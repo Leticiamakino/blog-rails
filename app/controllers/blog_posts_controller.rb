@@ -1,34 +1,52 @@
 class BlogPostsController < ApplicationController
-def index
-    @blog_posts = BlogPost.all
-end
+    before_action :set_blog_post, except: [:index, :create] 
 
-def show
-    @blog_post = BlogPost.find(params[:id])
-rescue ActiveRecord::RecordNotFound
-    redirect_to root_path
-end
+    def index
+        @blog_posts = BlogPost.all
+    end
 
-def new
-    @blog_post = BlogPost.new
-end
+    # def show
+    # end
 
-def create
-    @blog_post = BlogPost.new(blog_post_params)
-   if @blog_post.save
-    redirect_to @blog_post
-   else
-    render :new, status: :unprocessable_entity
+    # def new
+    #     @blog_post = BlogPost.new
+    # end
 
+    def create
+        @blog_post = BlogPost.new(blog_post_params)
+        
+        if @blog_post.save
+            redirect_to @blog_post
+        else
+            render :new, status: :unprocessable_entity
+        end
+    end
 
-   end
-end
+    # def edit
+    # end
 
-private 
+    # def update
+    #     if @blog_post.update(blog_post_params)
+    #         redirect_to @blog_post
+    #     else
+    #         render :edit, status: :unprocessable_entity
+    #     end
+    # end
 
-def blog_post_params
-    params.require(:blog_post).permit(:title, :body)
+    def destroy
+        @blog_post.destroy
+        redirect_to root_path
+    end
 
+    private 
 
-end
+    def blog_post_params
+        params.require(:blog_post).permit(:title, :body)
+    end
+    
+    def set_blog_post
+        @blog_post = BlogPost.find(params[:id])
+        rescue ActiveRecord::RecordNotFound
+        redirect_to root_path
+    end
 end
