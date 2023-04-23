@@ -12,4 +12,4 @@
 
 h2 {
   @apply !mt-4;
-}
+}@import 'actiontext.css';
