@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import 'actiontext.css';
 
 .btn-gray {
   @apply p-2 bg-gray-300 hover:bg-gray-200 transition-all rounded no-underline;
@@ -12,4 +13,4 @@
 
 h2 {
   @apply !mt-4;
-}@import 'actiontext.css';
+}
