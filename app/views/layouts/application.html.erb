@@ -11,21 +11,30 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="prose mx-auto">
-     <p class="notice"><%= notice %></p>
-     <p class="alert"><%= alert %></p>
+  <body class="bg-gray-100">
+    <header class="py-8 px-4 mb-5 bg-white flex gap-2 ">
+    <% if user_signed_in? %>
+      <%= link_to "Home", root_path %>|
+      <%= link_to "New blog post", new_blog_post_path %>|
+      <%= link_to "Profile", edit_user_registration_path %>|
+      <%= button_to "Log out", destroy_user_session_path, method: :delete %>|
+      <% else %>
+      <%= link_to "Home", root_path, class: "btn-gray" %>
+      <%= link_to "Login", new_user_session_path, class: "btn-gray" %>
+      <%= link_to "Sign Up", new_user_registration_path, class: "btn-green" %>
+    <% end %>
+    </header>
 
-     <div>
-     <% if user_signed_in? %>
-     <%= link_to "New blog post", new_blog_post_path %>
-     <%= link_to "Profile", edit_user_registration_path %>
-     <%= button_to "Log out", destroy_user_session_path, method: :delete %>
-     <%# else %>
-     <%#= link_to "Login", new_user_session_path %>
-     <%= link_to "Sign Up", new_user_registration_path %>
-     <% end %>
-     </div>
+    <div class="prose mx-auto">
+      <% if notice %>
+      <p class="notice m-0 bg-yellow-200 text-yellow-700 p-2 inline-block rounded mb-4"><%= notice %></p>
+      <% end %>
 
-    <%= yield %>
+      <% if alert %>
+      <p class="alert m-0 bg-red-200 inline-block p-2 text-red-700 rounded"><%= alert %></p>
+      <% end %>
+
+      <%= yield %>
+    </div>
   </body>
 </html>

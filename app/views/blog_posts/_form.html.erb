@@ -7,16 +7,20 @@
         </div>
     <% end %>
 
-    <div>
+    <div class="w-full mb-5">
         <%= form.label :title %>
-        <%= form.text_field :title %>
+        <br /   >
+        <%= form.text_field :title, class: 'w-full' %>
     </div>
 
-    <div>
+    <div class="mb-5">
         <%= form.label :body %>
-        <%= form.text_area :body %>
+        <br />
+        <%= form.text_area :body, class: 'w-full' %>
     </div>
-
+    
+    <div class="btn-green inline-block">
     <%= form.button %>
+    </div>
 <% end %>   
     
