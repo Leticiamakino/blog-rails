@@ -4,6 +4,6 @@ class BlogPost < ApplicationRecord
     validates :title, presence: true
     validates :content, presence: true 
 
-    scope :sorted, -> { order(arel_table[:published_at].desc.nulls_last).order(updated_at: :desc) }
+    scope :sorted, -> { order(arel_table[:created_at].desc.nulls_last).order(updated_at: :desc) }
 
 end

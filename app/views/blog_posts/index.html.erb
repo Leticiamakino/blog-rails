@@ -1,4 +1,4 @@
-<h1> Posts </h1>
+<h1>Posts</h1>
 
 <% @blog_posts.each do |blog_post| %>
 <div class="bg-white rounded p-4 mb-4 shadow-sm">
@@ -7,4 +7,7 @@
 </div>
 <% end %>
 
- 
+<div class="mt-16">
+<%== pagy_nav(@pagy) %>
+</div>
+
